@@ -1,10 +1,10 @@
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { useAnime } from "../context/AnimeContext";
+import { useNavigate } from "react-router-dom";
 
 export function AnimeCard({ anime }) {
   const { deleteAnime } = useAnime();
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const handleDelete = (id) => {
     toast((t) => (
