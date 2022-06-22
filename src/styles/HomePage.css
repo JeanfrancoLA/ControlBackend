@@ -1,25 +1,47 @@
+.home__container{
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* overflow: hidden; */
+}
+.home-animes__container{
+	width: 800px;
+	padding: 0px 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #6281a570;
+}
+
+.home-card-animes{
+	display: flex;
+	justify-content: space-between;
+	align-items: space-between;
+	gap: 2rem;
+	padding: 1rem;
+}
+
+
+
 
 .myButton {
-	box-shadow:inset 0px 1px 0px 0px #fbafe3;
-	background:linear-gradient(to bottom, #ffa50a 5%, #8a3f67 100%);
-	background-color:#ffa50a;
+	/* box-shadow:inset 0px 1px 0px 0px #afe4fb; */
+	background:linear-gradient(to bottom, #0ac6ff 5%, #3f478a 100%);
+	background-color:#0a0aff;
 	border-radius:6px;
-	border:1px solid #6e5267;
+	border: 1px solid #0ac6ff;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
 	font-weight:bold;
-	padding:7px 24px;
+	padding:7px 20px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #c70067;
+	/* text-shadow:0px 1px 0px #001bc7; */
 }
 .myButton:hover {
-	background:linear-gradient(to bottom, #8a3f67 5%, #ffa50a 100%);
-	background-color:#8a3f67;
-}
-.myButton:active {
-	position:relative;
-	top:1px;
+	border:1px solid rgb(2, 141, 255);
+	background-color:white;
 }

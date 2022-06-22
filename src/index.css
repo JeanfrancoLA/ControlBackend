@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card-anime{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: .5rem;
+	background-color: #3e5a7b70;
+  min-height: 14rem;
+  min-width: 7rem;
+}

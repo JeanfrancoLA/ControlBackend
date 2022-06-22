@@ -1,7 +1,7 @@
 import { useAnime } from "../context/AnimeContext";
 import {VscEmptyWindow} from 'react-icons/vsc';
 import {Link} from 'react-router-dom';
-import { PostCard } from "../components/PostCard";
+import { AnimeCard } from "../components/AnimeCard";
 import "../styles/HomePage.css"
 
 export function HomePage() {
@@ -15,14 +15,16 @@ export function HomePage() {
   )
 
   return (
-    <div>
+    <div className="home__container">
         <Link to="/new">Crear nuevo anime</Link>
-      <h2>HomePage de Gina</h2>
-      <div>
+      <section className="home-animes__container">
+      <h2>Animes</h2>
+      <div className="home-card-animes">
         {animes.map((anime) => (
-          <PostCard anime={anime} key={anime.id}/>
+          <AnimeCard anime={anime} key={anime.id}/>
         ))}
       </div>
+      </section>
     </div>
   );
 }

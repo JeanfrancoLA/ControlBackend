@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAnime } from "../context/AnimeContext";
 
-export function PostCard({ anime }) {
+export function AnimeCard({ anime }) {
   const { deleteAnime } = useAnime();
   const navigate = useNavigate;
 
@@ -31,8 +31,8 @@ export function PostCard({ anime }) {
   };
 
   return (
-    <div >
-      <div onClick={() => navigate(`/animes/${anime.id}`)}>
+    <div>
+      <div className="card-anime" onClick={() => navigate(`/animes/${anime.id}`)}>
         <h3>{anime.name}</h3>
         <p>{anime.description}</p>
         <button
