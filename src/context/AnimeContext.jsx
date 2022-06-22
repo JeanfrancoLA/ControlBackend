@@ -10,13 +10,15 @@ export const useAnime = () => {
 
 export const AnimeProvider = ({ children }) => {
   const [animes, setAnimes] = useState([]);
+
   const getAnimes = async () => {
     const response = await getAnimesRequests();
-    setAnimes(response.data);
+    setAnimes(response.data)
   };
   const createAnime = async (post) => {
      const response = await createAnimesRequests(post);
-     console.log(response);
+     setAnimes([...animes, response.data])
+    
   };
 
   useEffect(() => {
