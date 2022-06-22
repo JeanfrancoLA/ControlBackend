@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { getAnimesRequests, createAnimesRequests } from "../api/animes";
+import { getAnimesRequests, createAnimesRequests, deleteAnimesRequests } from "../api/animes";
 
 const animeContext = createContext();
 
@@ -21,12 +21,19 @@ export const AnimeProvider = ({ children }) => {
     
   };
 
+  const deleteAnime = async (id) => {
+    const response = await deleteAnimesRequests(id);
+    if (response.status === 204) {
+      setAnimes(animes.filter((anime) => anime.id !== id));
+    }
+  };
+
   useEffect(() => {
     getAnimes();
   }, []);
 
   return (
-    <animeContext.Provider value={{ animes, getAnimes ,createAnime }}>
+    <animeContext.Provider value={{ animes, getAnimes ,createAnime, deleteAnime }}>
       {children}
     </animeContext.Provider>
   );
