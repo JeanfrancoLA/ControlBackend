@@ -10,7 +10,6 @@ export function AnimeCard({ anime }) {
     toast((t) => (
       <div>
         <p>
-          {" "}
           Do you want to delete? <strong>{id}</strong>{" "}
         </p>
         <div>
@@ -21,8 +20,6 @@ export function AnimeCard({ anime }) {
               window.location.reload();
             }}
           >
-            {" "}
-            Delete{" "}
           </button>
           <button onClick={(e) => toast.dismiss(t.id)}> Cancel </button>
         </div>
@@ -32,7 +29,10 @@ export function AnimeCard({ anime }) {
 
   return (
     <div>
-      <div className="card-anime" onClick={() => navigate(`/animes/${anime.id}`)}>
+      <div
+        className="card-anime"
+        onClick={() => navigate(`/animes/${anime.id}`)}
+      >
         <h3>{anime.name}</h3>
         <p>{anime.description}</p>
         <button

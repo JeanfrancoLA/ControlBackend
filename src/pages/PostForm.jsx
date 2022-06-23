@@ -3,27 +3,27 @@ import * as Yup from "yup";
 import { useAnime } from "../context/AnimeContext";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "../styles/HomePage.css"
+import "../styles/HomePage.css";
 
 export const PostForm = () => {
-    const  { createAnime, getAnime, updateAnime } = useAnime();
-    const navigate = useNavigate();
-    const params = useParams();
-    const [anime, setAnimes] = useState({
-      name: "",
-          description: "",
-          front_image: "",
-          sample_image: "",
-          category_id: "",
-    })
-    useEffect(() => {
-    ( async ()=> {
+  const { createAnime, getAnime, updateAnime } = useAnime();
+  const navigate = useNavigate();
+  const params = useParams();
+  const [anime, setAnimes] = useState({
+    name: "",
+    description: "",
+    front_image: "",
+    sample_image: "",
+    category_id: "",
+  });
+  useEffect(() => {
+    (async () => {
       if (params.id) {
-        const anime = await getAnime(params.id)
-        setAnimes(anime)
+        const anime = await getAnime(params.id);
+        setAnimes(anime);
       }
-    }) ();
-    }, [])
+    })();
+  }, [params.id]);
 
   return (
     <div className="fomr-container">
@@ -40,41 +40,39 @@ export const PostForm = () => {
           sample_image: Yup.string().required("Texto requerido"),
           category_id: Yup.string().required("Texto requerido"),
         })}
-        onSubmit={ async (values, actions) => {
-
+        onSubmit={async (values, actions) => {
           if (params.id) {
             await updateAnime(params.id, values);
-          }else {
+            navigate("/");
+            window.location.reload();
+          } else {
             await createAnime(values);
           }
-
-
-            navigate("/");
+          navigate("/");
         }}
         enableReinitialize
       >
-        {({handleSubmit}) => (
+        {({ handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
-
             <label htmlFor="title">Nombre:</label>
             <Field name="name" placeholder="ingrese un texto" />
-            <ErrorMessage component="p" name="name"/>       
+            <ErrorMessage component="p" name="name" />
 
             <label htmlFor="title">Descripción:</label>
             <Field name="description" placeholder="ingrese un texto" />
-            <ErrorMessage name="description"/>  
+            <ErrorMessage name="description" />
 
             <label htmlFor="title">Imagen Principal:</label>
             <Field name="front_image" placeholder="ingrese un texto" />
-            <ErrorMessage name="front_image"/>  
+            <ErrorMessage name="front_image" />
 
             <label htmlFor="title">Imagen Secundaria:</label>
             <Field name="sample_image" placeholder="ingrese un texto" />
-            <ErrorMessage name="sample_image"/>  
+            <ErrorMessage name="sample_image" />
 
             <label htmlFor="title">Categoria:</label>
             <Field name="category_id" placeholder="ingrese un texto" />
-            <ErrorMessage name="category_id"/>  
+            <ErrorMessage name="category_id" />
 
             <button type="submit"> Guardar </button>
           </Form>

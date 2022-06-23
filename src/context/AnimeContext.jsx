@@ -1,5 +1,11 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { getAnimesRequests, createAnimesRequests, deleteAnimesRequests, getAnimeRequests, updateAnimeRequests } from "../api/animes";
+import {
+  getAnimesRequests,
+  createAnimesRequest,
+  deleteAnimesRequest,
+  getAnimeRequest,
+  updateAnimeRequest,
+} from "../api/animes";
 
 const animeContext = createContext();
 
@@ -8,50 +14,59 @@ export const useAnime = () => {
   return context;
 };
 
+
 export const AnimeProvider = ({ children }) => {
   const [animes, setAnimes] = useState([]);
 
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await getAnimeRequest();
+  //     setAnimes(response.data);
+  //   })();
+  // }, []);
+
   const getAnimes = async () => {
     const response = await getAnimesRequests();
-    setAnimes(response.data)
+    setAnimes(response.data);
   };
+
   const createAnime = async (post) => {
-     const response = await createAnimesRequests(post);
-     setAnimes([...animes, response.data])
-    
+    const response = await createAnimesRequest(post);
+    setAnimes([...animes, response.data]);
   };
 
   const deleteAnime = async (id) => {
-    const response = await deleteAnimesRequests(id);
+    const response = await deleteAnimesRequest(id);
     if (response.status === 204) {
       setAnimes(animes.filter((anime) => anime.id !== id));
     }
   };
 
   const getAnime = async (id) => {
-   const response = await getAnimeRequests(id)
-    return response.data
-  }
+    const response = await getAnimeRequest(id);
+    return response.data;
+  };
 
-  const updateAnime = async (id, post ) => {
-    const response = await updateAnimeRequests(id, post)
-    console.log(response)
-  }
+  const updateAnime = async (id, anime) => {
+    const response = await updateAnimeRequest(id, anime);
+    setAnimes(animes.map((anime) => (anime.id === id ? response.data : anime)));
+  };
 
   useEffect(() => {
     getAnimes();
   }, []);
 
   return (
-    <animeContext.Provider 
-    value={{ 
-      animes, 
-      getAnimes, 
-      createAnime, 
-      deleteAnime, 
-      getAnime,
-      updateAnime,
-      }}>
+    <animeContext.Provider
+      value={{
+        animes,
+        // getAnimes,
+        createAnime,
+        deleteAnime,
+        getAnime,
+        updateAnime,
+      }}
+    >
       {children}
     </animeContext.Provider>
   );
