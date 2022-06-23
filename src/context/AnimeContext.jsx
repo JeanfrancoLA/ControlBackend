@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { getAnimesRequests, createAnimesRequests, deleteAnimesRequests, getAnimeRequests } from "../api/animes";
+import { getAnimesRequests, createAnimesRequests, deleteAnimesRequests, getAnimeRequests, updateAnimeRequests } from "../api/animes";
 
 const animeContext = createContext();
 
@@ -33,12 +33,25 @@ export const AnimeProvider = ({ children }) => {
     return response.data
   }
 
+  const updateAnime = async (id, post ) => {
+    const response = await updateAnimeRequests(id, post)
+    console.log(response)
+  }
+
   useEffect(() => {
     getAnimes();
   }, []);
 
   return (
-    <animeContext.Provider value={{ animes, getAnimes ,createAnime, deleteAnime, getAnime }}>
+    <animeContext.Provider 
+    value={{ 
+      animes, 
+      getAnimes, 
+      createAnime, 
+      deleteAnime, 
+      getAnime,
+      updateAnime,
+      }}>
       {children}
     </animeContext.Provider>
   );

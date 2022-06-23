@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import "../styles/HomePage.css"
 
 export const PostForm = () => {
-    const  { createAnime, getAnime } = useAnime();
+    const  { createAnime, getAnime, updateAnime } = useAnime();
     const navigate = useNavigate();
     const params = useParams();
     const [anime, setAnimes] = useState({
@@ -30,7 +30,7 @@ export const PostForm = () => {
       <header>
         <Link to="/">Go Back</Link>
       </header>
-      
+
       <Formik
         initialValues={anime}
         validationSchema={Yup.object({
@@ -41,7 +41,14 @@ export const PostForm = () => {
           category_id: Yup.string().required("Texto requerido"),
         })}
         onSubmit={ async (values, actions) => {
-           await createAnime(values);
+
+          if (params.id) {
+            await updateAnime(params.id, values);
+          }else {
+            await createAnime(values);
+          }
+
+
             navigate("/");
         }}
         enableReinitialize
