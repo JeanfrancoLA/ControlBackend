@@ -5,4 +5,6 @@ export const createAnimesRequests = async(post)=> await axios.post('http://local
 export const deleteAnimesRequests = async id => await axios.delete('http://localhost:8011/animes/'+ id);
 export const getAnimeRequests = async id => await axios.get('http://localhost:8011/animes/'+ id);
 export const updateAnimeRequests = async (id, newFields) => 
-  await axios.put(`http://localhost:8011/animes/${id}`, newFields);
+  await axios.put(`http://localhost:8011/animes/${id}`, newFields);ç
+
+  esto es una prueba
