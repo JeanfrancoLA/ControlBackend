@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { HomePage, NotFoundPage, PostForm } from "./pages";
+import { HomePage, NotFoundPage, PostForm, CategoriePage } from "./pages";
 import { AnimeProvider } from "./context/AnimeContext";
 import { Toaster } from "react-hot-toast";
 
@@ -8,6 +8,7 @@ const App = () => {
     <AnimeProvider>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/categorie" element={<CategoriePage />} />
         <Route path="/new" element={<PostForm />} />
         <Route path="/animes/:id" element={<PostForm />} />
         <Route path="*" element={<NotFoundPage />} />

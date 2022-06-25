@@ -1,9 +1,9 @@
 import toast from "react-hot-toast";
-import { useAnime } from "../context/AnimeContext";
+import { useCategorie } from "../context/CategoriaContext"; 
 import { useNavigate } from "react-router-dom";
 
-export function AnimeCard({ anime }) {
-  const { deleteAnime } = useAnime();
+export function CategorieCard({ anime }) {
+  const { deleteAnime } = useCategorie();
   const navigate = useNavigate();
 
   const handleDelete = (id) => {
@@ -19,9 +19,9 @@ export function AnimeCard({ anime }) {
               toast.dismiss(t.id);
               window.location.reload();
             }}
-          >Aceptar
+          >
           </button>
-          <button onClick={(e) => toast.dismiss(t.id)}> Borrar </button>
+          <button onClick={(e) => toast.dismiss(t.id)}> Cancel </button>
         </div>
       </div>
     ));
